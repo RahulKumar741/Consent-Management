@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCMMS — Dashboard</title>
+  <link rel="stylesheet" href="reg-portal.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="dashboard.js" defer></script>
+
+  <!-- small page-only helpers -->
+  <style>
+    .dash-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;min-height:0;align-content:start}
+    .kpi{grid-column:span 3;background:#f7fbff;border:1px solid #e6edf3;border-radius:12px;padding:14px;box-shadow:var(--shadow)}
+    .kpi h4{margin:0;font-size:13px;color:var(--muted)}
+    .kpi .val{font-size:28px;font-weight:800;color:var(--blue-dark)}
+    .kpi .sub{font-size:12px;color:var(--muted)}
+    .chart-card{grid-column:span 6;background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px;box-shadow:var(--shadow)}
+    .chart-hd{display:flex;align-items:center;justify-content:space-between;margin:0 4px 8px}
+    .chart-hd h4{margin:0;font-size:14px}
+    .chart-wrap{position:relative;width:100%}
+    .h-220{height:220px}.h-260{height:260px}
+    .muted{color:var(--muted)}.small{font-size:12px}
+
+    /* visible toggle switch */
+    .cm-togglebar{display:flex;justify-content:flex-end;align-items:center;margin-bottom:8px}
+    .switch{position:relative;display:inline-block;width:44px;height:24px}
+    .switch input{opacity:0;width:0;height:0}
+    .slider{position:absolute;cursor:pointer;inset:0;background:#cbd5e1;border-radius:999px;transition:.2s}
+    .slider:before{content:"";position:absolute;height:18px;width:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+    .switch input:checked + .slider{background:#2a6fa6}
+    .switch input:checked + .slider:before{transform:translateX(20px)}
+    .toggle-label{margin-left:10px;font-size:13px;color:var(--text);font-weight:700}
+    @media (max-width:1140px){.kpi{grid-column:span 6}.chart-card{grid-column:span 12}}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="cm-header">
+    <div class="cm-topbar">
+      <section class="cm-box">
+        <div class="btn-group">
+          <button class="cm-acc">A+</button>
+          <button class="cm-acc">A</button>
+          <button class="cm-acc">A-</button>
+        </div>
+      </section>
+
+      <div class="cm-top-inner">
+        <div class="cm-left">
+          <img src="assets/logo.png" alt="PCB" class="cm-logo">
+          <span class="cm-org">Pollution Control Board</span>
+        </div>
+        <div class="cm-center">
+          <h1>Online Consent Management &amp; Monitoring System</h1>
+          <h2>Ministry of Environment, Forest and Climate Change<br>Government of India</h2>
+        </div>
+        <div class="cm-right">
+          <img src="assets/1.png" class="cm-emblem" alt="Emblem 1">
+          <img src="assets/2.png" class="cm-emblem" alt="Emblem 2">
+        </div>
+      </div>
+    </div>
+    <nav class="cm-nav">
+      <ul class="cm-nav-list">
+        <li><a href="dashboard.html">HOME</a></li>
+        <li><a href="dashboard.html">DASHBOARD</a></li>
+        <li><a href="activities.html">ACTIVITIES</a></li>
+        <li><a href="cte-application.html">APPLICATIONS</a></li>
+        <li><a href="authorizations.html">AUTHORIZATIONS</a></li>
+        <li><a href="profile.html">MY PROFILE</a></li>
+        <li><a href="audit.html">AUDIT LOGS</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="cm-page cm-page--two">
+    <aside class="cm-sidenav">
+      <ul>
+        <li><a href="dashboard.html" class="active">Overview</a></li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="payments.html">Payments</a></li>
+        <li><a href="queries.html">Queries</a></li>
+        <li><a href="inspections.html">Inspections</a></li>
+        <li><a href="notices.html">Notices</a></li>
+        <li><a href="downloads.html">Downloads</a></li>        
+        <li><a href="cte-application.html">Applications</a></li>
+        <li><a href="authorizations.html">Authorizations</a></li>
+        <li><a href="profile.html">My Profile</a></li>
+        <li><a href="audit.html">Audit Logs</a></li>
+        <li><button id="btnLogout" class="cm-btn danger" style="width:100%; margin-top:8px;">Logout</button></li>
+      </ul>
+    </aside>
+
+    <section class="cm-main">
+      <!-- Keep your existing welcome card exactly as-is -->
+      <section class="cm-card" style="margin-bottom:14px;">
+        <div class="cm-dash-hd">
+          <div>
+            <h3>Welcome, <span id="whoami">User</span></h3>
+            <div class="cm-muted cm-small">
+              Role: <span id="whoRole">—</span> • Device: <span id="whoUA">—</span>
+            </div>
+          </div>
+          <div class="cm-dash-actions">
+            <a class="cm-btn ghost" href="profile.html" role="button">Edit Profile</a>
+            <a class="cm-btn ghost" href="change-password.html" role="button">Change Password</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts container (scrollable) -->
+      <section class="cm-card cm-scroll">
+        <!-- Demo toggle (top-right, always visible) -->
+        <div class="cm-togglebar">
+          <label class="switch">
+            <input type="checkbox" id="demoToggle">
+            <span class="slider"></span>
+          </label>
+          <span class="toggle-label">Demo data</span>
+        </div>
+
+        <div class="dash-grid">
+          <!-- KPI chips -->
+          <div class="kpi"><h4>Total Applications</h4><div class="val" id="kpiApps">0</div><div class="sub" id="kpiAppsSub">—</div></div>
+          <div class="kpi"><h4>Pending Activities</h4><div class="val" id="kpiActs">0</div><div class="sub" id="kpiActsSub">—</div></div>
+          <div class="kpi"><h4>Active Authorizations</h4><div class="val" id="kpiAuths">0</div><div class="sub" id="kpiAuthsSub">—</div></div>
+          <div class="kpi"><h4>Expiring in 60 Days</h4><div class="val" id="kpiExp">0</div><div class="sub" id="kpiExpSub">—</div></div>
+
+          <!-- Charts -->
+          <div class="chart-card">
+            <div class="chart-hd"><h4>Applications — by Status</h4></div>
+            <div class="chart-wrap h-260"><canvas id="chartAppStatus" class="h-260"></canvas></div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-hd"><h4>Applications — Monthly Trend</h4></div>
+            <div class="chart-wrap h-260"><canvas id="chartAppTrend" class="h-260"></canvas></div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-hd"><h4>Authorizations — Expiry Buckets</h4></div>
+            <div class="chart-wrap h-220"><canvas id="chartAuthExpiry" class="h-220"></canvas></div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-hd"><h4>Activities — by Status</h4></div>
+            <div class="chart-wrap h-220"><canvas id="chartActStatus" class="h-220"></canvas></div>
+          </div>
+
+          <!-- Recent Activity section intentionally removed -->
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="#">Disclaimer</a> |
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Use</a>
+    </div>
+    <div class="footer-bottom">
+      <div class="left">© 2025 State Pollution Control Board. All Rights Reserved.</div>
+      <div class="right">Powered by ESDS</div>
+    </div>
+  </footer>
+
+  <div id="toast" class="cm-toast hidden"></div>
+</body>
+</html>

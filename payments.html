@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCMMS — Payments</title>
+  <link rel="stylesheet" href="reg-portal.css"/>
+  <script src="payments.js" defer></script>
+</head>
+<body>
+  <header class="cm-header">
+    <div class="cm-topbar">
+      <section class="cm-box">
+        <div class="btn-group">
+          <button class="cm-acc">A+</button>
+          <button class="cm-acc">A</button>
+          <button class="cm-acc">A-</button>
+        </div>
+      </section>    
+        
+    <div class="cm-top-inner">
+      <div class="cm-left"><img src="assets/logo.png" class="cm-logo" alt=""><span class="cm-org">Pollution Control Board</span></div>
+      <div class="cm-center"><h1>Online Consent Management &amp; Monitoring System</h1><h2>Ministry of Environment, Forest and Climate Change<br>Government of India</h2></div>
+      <div class="cm-right"><button class="cm-acc">A+</button><button class="cm-acc">A</button><button class="cm-acc">A-</button><img src="assets/1.png" class="cm-emblem"><img src="assets/2.png" class="cm-emblem"></div>
+    </div></div>
+    <nav class="cm-nav"><ul class="cm-nav-list">
+      <li><a href="reg-portal.html">HOME</a></li><li><a href="dashboard.html">DASHBOARD</a></li><li><a href="activities.html">ACTIVITIES</a></li>
+      <li><a href="applications.html">APPLICATIONS</a></li><li><a href="authorizations.html">AUTHORIZATIONS</a></li><li><a href="profile.html">MY PROFILE</a></li>
+      <li><a href="audit.html">AUDIT LOGS</a></li>
+      <li><a href="contact.html">CONTACT US</a></li>
+    </ul></nav>
+  </header>
+
+  <main class="cm-page cm-page--two">
+    <aside class="cm-sidenav"><ul>
+        <li><a href="dashboard.html" class="active">Overview</a></li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="payments.html">Payments</a></li>
+        <li><a href="queries.html">Queries</a></li>
+        <li><a href="inspections.html">Inspections</a></li>
+        <li><a href="notices.html">Notices</a></li>
+        <li><a href="downloads.html">Downloads</a></li>        
+        <li><a href="cte-application.html">Applications</a></li>
+        <li><a href="authorizations.html">Authorizations</a></li>
+        <li><a href="profile.html">My Profile</a></li>
+        <li><a href="audit.html">Audit Logs</a></li>
+      <li><button id="btnLogout" class="cm-btn danger" style="width:100%;margin-top:8px;">Logout</button></li>
+    </ul></aside>
+
+    <section class="cm-main">
+      <section class="cm-card" style="margin-bottom:14px;">
+        <div class="cm-dash-hd">
+          <div><h3>Payments</h3><div class="cm-muted cm-small">Unpaid challans &amp; receipts.</div></div>
+          <div class="cm-dash-actions"><button id="btnSeed" class="cm-btn ghost">Seed Demo</button></div>
+        </div>
+        <div class="cm-filters">
+          <select id="fStatus"><option value="all">All</option><option>Pending</option><option>Paid</option><option>Failed</option></select>
+          <input id="fSearch" type="text" placeholder="Search by Payment ID / Ref">
+          <button id="fClear" class="cm-btn ghost">Clear</button>
+        </div>
+      </section>
+
+      <section class="cm-card cm-scroll">
+        <div style="overflow:hidden;">
+          <table class="cm-table cm-table--fixed" id="payTable">
+            <colgroup><col style="width:180px;"><col style="width:220px;"><col style="width:140px;"><col style="width:140px;"><col style="width:auto;"></colgroup>
+            <thead><tr><th>Payment ID</th><th>Reference</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="payTbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="footer-top"><a href="#">Disclaimer</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></div><div class="footer-bottom"><div class="left">© 2025 State Pollution Control Board.</div><div class="right">Powered by ESDS</div></div></footer>
+  <div id="toast" class="cm-toast hidden"></div>
+</body>
+</html>
