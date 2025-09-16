@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCMMS — Authorizations</title>
+  <link rel="stylesheet" href="reg-portal.css"/>
+  <script src="common.js" defer></script>
+  <script src="authorizations.js" defer></script>
+</head>
+<body>
+      <!-- ===== Header (green top + blue nav) ===== -->
+  <header class="cm-header">
+    <div class="cm-topbar">
+
+      <section class="cm-box">
+        <div class="btn-group">
+          <button class="cm-acc">A+</button>
+          <button class="cm-acc">A</button>
+          <button class="cm-acc">A-</button>
+        </div>
+      </section>
+  <!-- ===== Header (same as other pages) ===== -->
+  <header class="cm-header">
+    <div class="cm-topbar">
+      <div class="cm-top-inner">
+        <div class="cm-left">
+          <img src="assets/logo.png" alt="PCB" class="cm-logo">
+          <span class="cm-org">Pollution Control Board</span>
+        </div>
+        <div class="cm-center">
+          <h1>Online Consent Management &amp; Monitoring System</h1>
+          <h2>Ministry of Environment, Forest and Climate Change<br>Government of India</h2>
+        </div>
+        <div class="cm-right">
+          <button class="cm-acc">A+</button>
+          <button class="cm-acc">A</button>
+          <button class="cm-acc">A-</button>
+          <img src="assets/1.png" class="cm-emblem" alt="Emblem 1">
+          <img src="assets/2.png" class="cm-emblem" alt="Emblem 2">
+        </div>
+      </div>
+    </div>
+    <nav class="cm-nav">
+      <ul class="cm-nav-list">
+        <li><a href="dashboard.html">HOME</a></li>
+        <li><a href="dashboard.html">DASHBOARD</a></li>
+        <li><a href="activities.html">ACTIVITIES</a></li>
+        <li><a href="reports.html">REPORTS</a></li>
+        <li><a href="profile.html">MY PROFILE</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main: two-column, frozen layout; right card scrolls ===== -->
+  <main class="cm-page cm-page--two">
+    <!-- Sidebar -->
+    <aside class="cm-sidenav">
+      <ul>
+        <li><a href="dashboard.html">Overview</a></li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="payments.html">Payments</a></li>
+        <li><a href="queries.html">Queries</a></li>
+        <li><a href="inspections.html">Inspections</a></li>
+        <li><a href="notices.html">Notices</a></li>
+        <li><a href="downloads.html">Downloads</a></li>        
+        <li><a href="cte-application.html">Applications</a></li>
+        <li><a href="authorizations.html">Authorizations</a></li>
+        <li><a href="profile.html">My Profile</a></li>
+        <li><a href="audit.html">Audit Logs</a></li>
+        <li><button id="btnLogout" class="cm-btn danger" style="width:100%; margin-top:8px;">Logout</button></li>
+      </ul>
+    </aside>
+
+    <!-- Right column -->
+    <section class="cm-main">
+      <div class="cm-main-fill">
+        <section class="cm-card cm-scroll">
+          <div class="cm-dash-hd" style="margin-bottom:10px;">
+            <div>
+              <h3>Authorizations</h3>
+              <div class="cm-muted cm-small">View, download, renew, or revoke your authorizations.</div>
+            </div>
+            <div class="cm-dash-actions">
+              <button id="btnSeed" class="cm-btn ghost" type="button" title="Add sample entries (for demo)">Seed Demo</button>
+            </div>
+          </div>
+
+          <!-- Filters -->
+          <div class="cm-filters">
+            <select id="fType" title="Filter by type">
+              <option value="all">All Types</option>
+              <option>CTE</option>
+              <option>CTO (Air)</option>
+              <option>CTO (Water)</option>
+              <option>Authorization (HW)</option>
+            </select>
+            <select id="fStatus" title="Filter by status">
+              <option value="all">All Statuses</option>
+              <option>Active</option>
+              <option>Expired</option>
+              <option>Suspended</option>
+              <option>Revoked</option>
+              <option>Pending</option>
+            </select>
+            <input id="fSearch" type="text" placeholder="Search by ID, Unit, Type"/>
+            <button id="fClear" class="cm-btn ghost" type="button">Clear</button>
+          </div>
+
+          <!-- Table (fixed column widths) -->
+          <div style="overflow:hidden;">
+            <table class="cm-table cm-table--fixed" id="authTable">
+              <colgroup>
+                <col style="width:200px;">
+                <col style="width:160px;">
+                <col style="width:260px;">
+                <col style="width:200px;">
+                <col style="width:120px;">
+                <col style="width:auto;">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Type</th>
+                  <th>Unit</th>
+                  <th>Validity</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="authTbody">
+                <!-- rows injected by JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <a href="#">Disclaimer</a> |
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Use</a>
+    </div>
+    <div class="footer-bottom">
+      <div class="left">© 2025 State Pollution Control Board. All Rights Reserved.</div>
+      <div class="right">Powered by ESDS</div>
+    </div>
+  </footer>
+
+  <!-- Modal for details -->
+  <div id="authModal" class="cm-modal hidden" role="dialog" aria-modal="true">
+    <div class="cm-modal-card">
+      <div class="cm-dash-hd" style="margin-bottom:8px;">
+        <h3 style="margin:0;">Authorization Details</h3>
+        <button id="authClose" class="cm-btn ghost" type="button">Close</button>
+      </div>
+      <div id="authDetail" class="cm-panel-bd" style="padding:0;">
+        <!-- details injected -->
+      </div>
+      <div class="cm-actions" style="justify-content:flex-end; margin-top:10px;">
+        <button id="btnPrint" class="cm-btn ghost" type="button">Print</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="cm-toast hidden"></div>
+</body>
+</html>

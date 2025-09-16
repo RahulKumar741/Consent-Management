@@ -1,0 +1,172 @@
+/* =========================================================
+   AUDIT PAGE — STANDALONE CSS
+   (Header+Nav, Frozen Layout, Sidebar, Cards, Buttons,
+    Filters, Fixed Table, Footer)
+   ========================================================= */
+
+/* ===== Theme tokens ===== */
+:root{
+  --green:#5fa629; --green-dark:#2f7e1d;
+  --blue:#2a6fa6;  --blue-dark:#1f5680;
+  --panel:#ffffff; --border:#d9e3ef; --bg:#f4f9ff;
+  --text:#142132;  --muted:#5c6b7a;  --danger:#d64545;
+  --shadow:0 8px 28px rgba(16,24,40,.08); --radius:12px;
+}
+
+/* ===== Reset + Frozen viewport rows (header / main / footer) ===== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:Arial, Helvetica, sans-serif;
+  background:var(--bg); color:var(--text);
+  display:grid; grid-template-rows:auto 1fr auto;
+  overflow:hidden; /* no page scrollbar */
+}
+
+/* ===== Header & Topbar ===== */
+.cm-topbar{background:#fcfcfb; color:#1b1b1b}
+.cm-top-inner{
+  max-width:1500px; margin:0 auto; padding:10px 16px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.cm-left{display:flex; align-items:center; gap:10px}
+.cm-logo{height:70px}
+.cm-org{color:#c55a35; font-weight:700}
+.cm-center{text-align:center; flex:1}
+.cm-center h1{margin:0; font-size:22px; color:#0fbcd3; font-weight:800}
+.cm-center h2{margin:2px 0 0; font-size:13px; font-weight:700}
+.cm-right{display:flex; align-items:center; gap:10px}
+.cm-emblem{height:80px}
+.cm-acc{
+  border:1px solid #d9dfe7; background:transparent; color:floralwhite;
+  padding:2px 6px; border-radius:6px; cursor:pointer;
+}
+.cm-acc:hover{background:#eef3f9}
+
+/* ===== Top Nav ===== */
+.cm-nav{background:var(--blue)}
+.cm-nav-list{
+  max-width:1500px; margin:0 auto; padding:0 16px;
+  list-style:none; display:flex; flex-wrap:wrap; gap:6px;
+}
+.cm-nav-list a{
+  display:block; color:#fff; text-decoration:none; font-weight:700;
+  padding:10px 12px; border:1px solid #3c79a9; background:#2e6fa1; border-radius:4px;
+}
+.cm-nav-list a:hover{background:var(--blue-dark)}
+.cm-nav-list a.active{background:var(--blue-dark)}
+
+/* ===== Page container + Two-column layout ===== */
+.cm-page{
+  max-width:1500px; margin:14px auto 24px; padding:0 16px;
+  display:grid; gap:14px; min-height:0;
+}
+.cm-page.cm-page--two{
+  grid-template-columns:240px 1fr;
+  overflow:hidden;
+}
+@media (max-width:1100px){
+  .cm-page.cm-page--two{ grid-template-columns:1fr; grid-auto-rows:auto; }
+}
+
+/* ===== Sidebar ===== */
+.cm-sidenav{
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:10px; overflow:auto; min-height:0;
+}
+.cm-sidenav ul{list-style:none; margin:0; padding:0}
+.cm-sidenav a{
+  display:block; padding:10px 12px; margin:4px 0;
+  color:var(--text); text-decoration:none; border-radius:8px;
+}
+.cm-sidenav a:hover, .cm-sidenav a.active{background:#eaf6ff; color:var(--blue-dark)}
+
+/* ===== Right column (card-only scroll) ===== */
+.cm-main{display:flex; flex-direction:column; gap:14px; overflow:hidden; min-height:0}
+.cm-main-fill{display:flex; flex-direction:column; flex:1 1 auto; min-height:0}
+.cm-scroll{flex:1 1 auto; min-height:0; overflow:auto}
+
+/* ===== Cards & Utilities ===== */
+.cm-card{
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:16px;
+}
+.cm-dash-hd{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; flex-wrap:wrap; margin-bottom:8px;
+}
+.cm-muted{color:var(--muted)} .cm-small{font-size:12px}
+.hidden{display:none!important}
+
+/* ===== Buttons ===== */
+.cm-btn{
+  border:none; border-radius:8px; padding:9px 12px; cursor:pointer; font-weight:800;
+  display:inline-flex; align-items:center; justify-content:center; line-height:1; white-space:nowrap;
+}
+.cm-btn.ghost{background:#eef7ff; border:1px solid #d3e8ff; color:#1f5680}
+.cm-btn.ghost:hover{background:#e2f0ff}
+.cm-btn.danger{background:var(--danger); color:#fff}
+
+/* ===== Filters ===== */
+.cm-filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px}
+.cm-filters input, .cm-filters select{height:36px; padding:6px 10px}
+
+/* ===== Fixed table (no jump on empty, ellipsis, soft cell shadows) ===== */
+.cm-table--fixed{
+  width:100%;
+  table-layout:fixed;          /* col widths controlled by <colgroup> */
+  border-collapse:separate; border-spacing:0;
+  background:#fff; box-shadow:var(--shadow);
+}
+.cm-table--fixed th, .cm-table--fixed td{
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  padding:8px; text-align:left; vertical-align:top;
+}
+.cm-table--fixed th{
+  background:#f7fbff; border-bottom:1px solid #e6edf3;
+  box-shadow: inset 0 -1px 0 #e6edf3;
+}
+.cm-table--fixed td{
+  border-bottom:1px solid #eef2f7;
+  box-shadow: inset -1px 0 0 #eef2f7; /* vertical separators */
+}
+.cm-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.td-type{font-weight:700}
+.td-device{font-size:12px; color:var(--muted)}
+
+/* Optional sticky header (uncomment if desired) */
+/*
+.cm-table--fixed thead th{ position:sticky; top:0; z-index:1; }
+*/
+
+/* ===== Footer (pinned by body grid) ===== */
+.footer{
+  background:#0073aa; color:#fff; padding:10px 20px; font-size:14px;
+}
+.footer-top{text-align:center; margin-bottom:5px}
+.footer-top a{color:#fff; text-decoration:none; margin:0 8px}
+.footer-bottom{display:flex; justify-content:space-between; align-items:center}
+.footer-bottom .left{text-align:left}
+.footer-bottom .right{text-align:right}
+
+/* ===== Toast (optional) ===== */
+.cm-toast{
+  position:fixed; left:50%; transform:translateX(-50%); bottom:22px;
+  background:#111827; color:#fff; padding:10px 14px; border-radius:999px;
+  box-shadow:var(--shadow); opacity:0; transition:opacity .2s ease; z-index:30;
+}
+.cm-toast.show{opacity:1}
+
+.cm-box{
+  background:#5fa629;
+  border:2px solid var(--blue, #2a6fa6); /* uses your theme blue */
+  border-radius:0px;
+  padding:5px;
+  margin:0% 0;
+}
+.btn-group {
+  display: flex;                 /* Put buttons in a row */
+  justify-content: right;  /* Align all buttons to the left */
+  gap: 10px;                    /* Spacing between buttons */
+}
+

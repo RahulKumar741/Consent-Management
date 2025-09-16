@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Consent Management & Monitoring System</title>
+  <link rel="stylesheet" href="reg-portal.css"/>
+  <script src="reg-portal.js" defer></script>
+</head>
+<body>
+  <!-- ===== Header (green top + blue nav) ===== -->
+  <header class="cm-header">
+    <div class="cm-topbar">
+
+      <section class="cm-box">
+        <div class="btn-group">
+          <button class="cm-acc">A+</button>
+          <button class="cm-acc">A</button>
+          <button class="cm-acc">A-</button>
+        </div>
+      </section>
+      
+      <div class="cm-top-inner">
+        <div class="cm-left">
+          <img src="assets/logo.png" alt="Pollution Control Board" class="cm-logo">
+          <span class="cm-org">Central Pollution Control Board</span>
+        </div>
+        <div class="cm-center">
+          <h1>Online Consent Management &amp; Monitoring System</h1>
+          <h2>Ministry of Environment, Forest and Climate Change<br>Government of India</h2>
+        </div>
+        <div class="cm-right">
+          <img src="assets/1.png" class="cm-emblem" alt="State Emblem">
+          <img src="assets/2.png" class="cm-emblem" alt="GoI Emblem">
+        </div>
+      </div>
+    </div>
+    <nav class="cm-nav">
+      <ul class="cm-nav-list">
+        <li><a href="#"><span class="ic">🏠</span> HOME</a></li>
+        <li><a href="#"><span class="ic">👤</span> ABOUT US</a></li>
+        <li><a href="#"><span class="ic">🔗</span> RELATED LINKS</a></li>
+        <li><a href="#"><span class="ic">🧭</span> DASHBOARD</a></li>
+        <li><a href="#"><span class="ic">📄</span> REPORT</a></li>
+        <li><a href="#"><span class="ic">🔎</span> QSEARCH STATUS</a></li>
+        <li><a href="#"><span class="ic">❓</span> FAQS</a></li>
+        <li><a href="#"><span class="ic">📂</span> CATEGORY DETAILS</a></li>
+        <li><a href="contact.html"><span class="ic">📞</span> CONTACT US</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Page grid ===== -->
+  <main class="cm-page">
+    <!-- Left column -->
+    <aside class="cm-leftcol">
+      <section class="cm-panel">
+        <header class="cm-panel-hd">News/Press</header>
+        <div class="cm-panel-bd">
+          <p>Latest updates from the Pollution Control Board…</p>
+          <p>Public notice regarding scheduled maintenance…</p>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Center column -->
+    <section class="cm-centercol">
+      <div class="cm-hero">
+        <img src="assets/01.jpg" alt="Banner" class="cm-hero-img">
+      </div>
+      
+          <!-- AUTH MODULE -->
+      <div id="auth-app" class="cm-card">
+        <nav class="cm-tabs">
+          <button class="cm-tab-btn active" data-tab="login">Login</button>
+          <button class="cm-tab-btn" data-tab="register">Register</button>
+        </nav>
+
+       <!-- Login -->
+        <section id="login" class="cm-tab active">
+          <h3>Secure Login</h3>
+          <form id="loginForm" novalidate="">
+            <div class="cm-field">
+              <label for="loginUser">Username / Email / Mobile / PAN</label>
+              <input id="loginUser" type="text" required="">
+            </div>
+            <div class="cm-field">
+              <label for="loginPassword">Password</label>
+              <input id="loginPassword" type="password" required="">
+            </div>
+
+            <div class="cm-row">
+              <label class="cm-check">
+                <input id="rememberMe" type="checkbox"> <span>Remember Me</span>
+              </label>
+              <a id="openForgot" href="#" class="cm-link">Forgot Password?</a>
+            </div>
+
+            <div class="cm-actions">
+              <button type="submit" class="cm-btn primary">Login</button>
+              <button type="reset" class="cm-btn ghost">Clear</button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+        <!-- Register -->
+        <section id="register" class="cm-tab">
+          <h3>New User Registration</h3>
+          <form id="registerForm" novalidate="">
+            <div class="cm-field">
+              <label for="regFullName">Full Name</label>
+              <input id="regFullName" type="text" required="">
+            </div>
+
+            <div class="cm-field">
+              <label for="regEmailMobilePan">Email / Mobile / PAN</label>
+              <input id="regEmailMobilePan" type="text" required="">
+            </div>
+
+            <div class="cm-field">
+              <label for="regPassword">Password
+                <span class="cm-muted">(min 8, upper, lower, digit, symbol)</span>
+              </label>
+              <input id="regPassword" type="password" required="">
+            </div>
+
+            <div class="cm-field">
+              <label for="regRole">Role</label>
+              <select id="regRole" required="">
+                <option value="applicant">Applicant</option>
+                <option value="officer">Officer</option>
+                <option value="inspector">Inspector</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+
+            <div class="cm-field">
+              <label>Captcha</label>
+              <div class="cm-captcha">
+                <span id="captchaQ">4 + 6 = ?</span>
+                <input id="captchaA" type="text" inputmode="numeric" placeholder="Answer" required="">
+                <button type="button" id="refreshCaptcha" class="cm-linkbtn">↻</button>
+              </div>
+            </div>
+
+            <label class="cm-check">
+              <input id="regTnc" type="checkbox" required="">
+              <span>I agree to the Terms &amp; Conditions and Privacy Policy</span>
+            </label>
+
+            <div class="cm-actions">
+              <button type="submit" class="cm-btn primary">Register</button>
+              <button type="reset" class="cm-btn ghost">Clear</button>
+            </div>
+
+            </form>
+        </section>    
+  </section>
+    <aside class="cm-leftcol">
+      <section class="cm-panel">
+        <header class="cm-panel-hd">About Us</header>
+        <div class="cm-panel-bd">
+          <p>The Pollution Control Board has been established as a regulatory authority for implementing various pollution control laws. The board is committed to provide pollution free environment to the people of state.</p>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <!-- OTP Modal -->
+  <div id="otpModal" class="cm-modal hidden" role="dialog" aria-modal="true" aria-labelledby="otpTitle">
+    <div class="cm-modal-card">
+      <h3 id="otpTitle">Enter OTP</h3>
+        <form id="otpForm">
+        <div class="cm-field">
+          <label for="otpInput">OTP</label>
+          <input id="otpInput" type="text" inputmode="numeric" maxlength="6" placeholder="1234" required />
+        </div>
+        <div class="cm-row">
+          <button type="submit" class="cm-btn primary">Verify</button>
+          <button type="button" id="otpResend" class="cm-btn ghost">Resend</button>
+          <button type="button" id="otpCancel" class="cm-btn danger">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Forgot/Reset Modal -->
+  <div id="forgotModal" class="cm-modal hidden" role="dialog" aria-modal="true" aria-labelledby="forgotTitle">
+    <div class="cm-modal-card">
+      <h3 id="forgotTitle">Forgot Password</h3>
+      <form id="forgotForm">
+        <div class="cm-field">
+          <label for="fpIdentifier">Email / Mobile / PAN</label>
+          <input id="fpIdentifier" type="text" required />
+        </div>
+        <div class="cm-row">
+          <button class="cm-btn primary" type="submit">Send OTP</button>
+          <button class="cm-btn ghost" type="button" id="forgotCancel">Cancel</button>
+        </div>
+      </form>
+
+      <form id="resetForm" class="hidden">
+        <div class="cm-field"><label for="fpOtp">Enter OTP</label><input id="fpOtp" type="text" inputmode="numeric" placeholder="1234" required /></div>
+        <div class="cm-field"><label for="fpNewPwd">New Password</label><input id="fpNewPwd" type="password" required /></div>
+        <div class="cm-field"><label for="fpNewPwd2">Confirm New Password</label><input id="fpNewPwd2" type="password" required /></div>
+        <div class="cm-row">
+          <button class="cm-btn primary" type="submit">Reset Password</button>
+          <button class="cm-btn ghost" type="button" id="resetBack">Back</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="cm-toast hidden"></div>
+</body>
+<footer class="footer">
+    <div class="footer-top">
+        <a href="#">Terms and Conditions</a> |
+        <a href="#">Refund Policy</a> |
+        <a href="#">CopyRight Policy</a> |
+        <a href="#">Hyperlinking Policy</a> |
+        <a href="#">Accessibility Statement</a> |
+        <a href="#">Help</a>
+    </div>
+    <div class="footer-bottom">
+        <span class="left">© 2025 Your Company Name. All Rights Reserved</span>
+        <span class="right">Page Last updated on: XX XX XXXX</span>
+    </div>
+     <div class="footer-bottom">
+        <span class="right">Visitors: XXXXX</span>
+    </div>
+</footer>
+</html>

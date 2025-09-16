@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCMMS — CTE Application</title>
+  <link rel="stylesheet" href="reg-portal.css"/>
+  <script src="common.js" defer></script>
+  <script src="cte-application.js" defer></script>
+</head>
+<body>
+      <!-- ===== Header (green top + blue nav) ===== -->
+  <header class="cm-header">
+    <div class="cm-topbar">
+
+      <section class="cm-box">
+        <div class="btn-group">
+          <button class="cm-acc">A+</button>
+          <button class="cm-acc">A</button>
+          <button class="cm-acc">A-</button>
+        </div>
+      </section>
+  <!-- ===== Header (same as other pages) ===== -->
+  <header class="cm-header">
+    <div class="cm-topbar">
+      <div class="cm-top-inner">
+        <div class="cm-left">
+          <img src="assets/logo.png" alt="PCB" class="cm-logo">
+          <span class="cm-org">Pollution Control Board</span>
+        </div>
+        <div class="cm-center">
+          <h1>Online Consent Management &amp; Monitoring System</h1>
+          <h2>Ministry of Environment, Forest and Climate Change<br>Government of India</h2>
+        </div>
+        <div class="cm-right">
+          <button class="cm-acc">A+</button>
+          <button class="cm-acc">A</button>
+          <button class="cm-acc">A-</button>
+          <img src="assets/1.png" class="cm-emblem" alt="Emblem 1">
+          <img src="assets/2.png" class="cm-emblem" alt="Emblem 2">
+        </div>
+      </div>
+    </div>
+    <nav class="cm-nav">
+      <ul class="cm-nav-list">
+        <li><a href="dashboard.html">HOME</a></li>
+        <li><a href="dashboard.html">DASHBOARD</a></li>
+        <li><a href="activities.html">ACTIVITIES</a></li>
+        <li><a href="reports.html">REPORTS</a></li>
+        <li><a href="profile.html">MY PROFILE</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main: two-column layout ===== -->
+  <main class="cm-page cm-page--two">
+    <!-- Sidebar -->
+    <aside class="cm-sidenav">
+      <ul>
+        <li><a href="dashboard.html">Overview</a></li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="payments.html">Payments</a></li>
+        <li><a href="queries.html">Queries</a></li>
+        <li><a href="inspections.html">Inspections</a></li>
+        <li><a href="notices.html">Notices</a></li>
+        <li><a href="downloads.html">Downloads</a></li>        
+        <li><a href="cte-application.html">Applications</a></li>
+        <li><a href="authorizations.html">Authorizations</a></li>
+        <li><a href="profile.html">My Profile</a></li>
+        <li><a href="audit.html">Audit Logs</a></li>
+        <li><button id="btnLogout" class="cm-btn danger" style="width:100%; margin-top:8px;">Logout</button></li>
+      </ul>
+    </aside>
+
+    <!-- Right column -->
+    <section class="cm-main">
+      <div class="cm-main-fill">
+        <!-- Single scrollable card -->
+        <section class="cm-card cm-scroll">
+          <div class="cm-dash-hd" style="margin-bottom:10px;">
+            <div>
+              <h3>Consent to Establish (CTE) — Application</h3>
+              <div class="cm-muted cm-small">Fill details and upload required documents. You can save as draft anytime.</div>
+            </div>
+            <div class="cm-dash-actions">
+              <button id="btnSaveDraftTop" class="cm-btn ghost" type="button">Save Draft</button>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="cm-tabs" role="tablist">
+            <button class="cm-tab-btn active" data-tab="tab-applicant"  type="button">1. Applicant</button>
+            <button class="cm-tab-btn"        data-tab="tab-unit"       type="button">2. Unit &amp; Project</button>
+            <button class="cm-tab-btn"        data-tab="tab-location"   type="button">3. Location</button>
+            <button class="cm-tab-btn"        data-tab="tab-utilities"  type="button">4. Utilities &amp; Pollution</button>
+            <button class="cm-tab-btn"        data-tab="tab-waste"      type="button">5. Waste &amp; Disposal</button>
+            <button class="cm-tab-btn"        data-tab="tab-docs"       type="button">6. Documents</button>
+            <button class="cm-tab-btn"        data-tab="tab-declare"    type="button">7. Declaration &amp; Submit</button>
+          </div>
+
+          <form id="cteForm" novalidate>
+            <!-- ================= Applicant ================= -->
+            <section id="tab-applicant" class="cm-tab active">
+              <div class="cm-formgrid">
+                <div class="cm-field col-6">
+                  <label for="applicantName">Applicant Name</label>
+                  <input id="applicantName" type="text" placeholder="Your full name" required>
+                </div>
+                <div class="cm-field col-6">
+                  <label for="applicantRole">Role</label>
+                  <input id="applicantRole" type="text" placeholder="e.g., Applicant / Authorized Signatory">
+                </div>
+                <div class="cm-field col-6">
+                  <label for="applicantEmail">Email</label>
+                  <input id="applicantEmail" type="email" placeholder="name@example.com" required>
+                </div>
+                <div class="cm-field col-6">
+                  <label for="applicantPhone">Mobile</label>
+                  <input id="applicantPhone" type="text" placeholder="10-digit mobile" required>
+                </div>
+                <div class="cm-field col-12">
+                  <label for="applicantAddress">Correspondence Address</label>
+                  <input id="applicantAddress" type="text" placeholder="House No., Street, City, State, PIN">
+                </div>
+              </div>
+              <div class="cm-actions">
+                <button class="cm-btn ghost" type="button" id="next1">Next</button>
+              </div>
+            </section>
+
+            <!-- ================= Unit & Project ================= -->
+            <section id="tab-unit" class="cm-tab">
+              <div class="cm-formgrid">
+                <div class="cm-field col-6">
+                  <label for="industryName">Industry / Unit Name</label>
+                  <input id="industryName" type="text" placeholder="Registered unit name" required>
+                </div>
+                <div class="cm-field col-3">
+                  <label for="industryCategory">Category</label>
+                  <select id="industryCategory" required>
+                    <option value="">Select</option>
+                    <option>Red</option>
+                    <option>Orange</option>
+                    <option>Green</option>
+                    <option>White</option>
+                  </select>
+                </div>
+                <div class="cm-field col-3">
+                  <label for="industryScale">Scale</label>
+                  <select id="industryScale">
+                    <option value="">Select</option>
+                    <option>Micro</option>
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                  </select>
+                </div>
+                <div class="cm-field col-6">
+                  <label for="sector">Sector</label>
+                  <select id="sector">
+                    <option value="">Select</option>
+                    <option>Manufacturing</option>
+                    <option>Service</option>
+                    <option>Infrastructure</option>
+                    <option>Others</option>
+                  </select>
+                </div>
+                <div class="cm-field col-3">
+                  <label for="projectInvestment">Proposed Investment (₹ Lakhs)</label>
+                  <input id="projectInvestment" type="number" min="0" step="0.01" placeholder="e.g., 250.00">
+                </div>
+                <div class="cm-field col-3">
+                  <label for="capacity">Production Capacity (Units/Month)</label>
+                  <input id="capacity" type="text" placeholder="e.g., 10,000 Nos">
+                </div>
+                <div class="cm-field col-6">
+                  <label for="rawMaterials">Major Raw Materials</label>
+                  <input id="rawMaterials" type="text" placeholder="Comma-separated">
+                </div>
+                <div class="cm-field col-6">
+                  <label for="products">Products</label>
+                  <input id="products" type="text" placeholder="Comma-separated">
+                </div>
+              </div>
+              <div class="cm-actions">
+                <button class="cm-btn ghost" type="button" id="back2">Back</button>
+                <button class="cm-btn ghost" type="button" id="next2">Next</button>
+              </div>
+            </section>
+
+            <!-- ================= Location ================= -->
+            <section id="tab-location" class="cm-tab">
+              <div class="cm-formgrid">
+                <div class="cm-field col-12">
+                  <label for="siteAddress">Site Address</label>
+                  <input id="siteAddress" type="text" placeholder="Village/Town, Tehsil, District, State, PIN" required>
+                </div>
+                <div class="cm-field col-4">
+                  <label for="state">State</label>
+                  <input id="state" type="text" placeholder="State">
+                </div>
+                <div class="cm-field col-4">
+                  <label for="district">District</label>
+                  <input id="district" type="text" placeholder="District">
+                </div>
+                <div class="cm-field col-4">
+                  <label for="pin">PIN</label>
+                  <input id="pin" type="text" placeholder="6-digit PIN">
+                </div>
+                <div class="cm-field col-6">
+                  <label for="latitude">Latitude</label>
+                  <input id="latitude" type="text" placeholder="e.g., 19.0760">
+                </div>
+                <div class="cm-field col-6">
+                  <label for="longitude">Longitude</label>
+                  <input id="longitude" type="text" placeholder="e.g., 72.8777">
+                </div>
+              </div>
+              <div class="cm-actions">
+                <button class="cm-btn ghost" type="button" id="back3">Back</button>
+                <button class="cm-btn ghost" type="button" id="next3">Next</button>
+              </div>
+            </section>
+
+            <!-- ================= Utilities & Pollution ================= -->
+            <section id="tab-utilities" class="cm-tab">
+              <div class="cm-formgrid">
+                <div class="cm-field col-4">
+                  <label for="waterConsumption">Water Consumption (KLD)</label>
+                  <input id="waterConsumption" type="number" min="0" step="0.01" placeholder="e.g., 15.5">
+                </div>
+                <div class="cm-field col-4">
+                  <label for="wastewater">Wastewater Generation (KLD)</label>
+                  <input id="wastewater" type="number" min="0" step="0.01" placeholder="e.g., 8.0">
+                </div>
+                <div class="cm-field col-4">
+                  <label for="powerLoad">Connected Load (kVA)</label>
+                  <input id="powerLoad" type="number" min="0" step="0.1" placeholder="e.g., 120">
+                </div>
+                <div class="cm-field col-12">
+                  <label for="effluentPlan">Effluent Treatment Plan</label>
+                  <input id="effluentPlan" type="text" placeholder="Describe ETP, discharge point, reuse, etc.">
+                </div>
+                <div class="cm-field col-12">
+                  <label for="airSources">Air Emission Sources</label>
+                  <input id="airSources" type="text" placeholder="Boilers/Generators/Process vents etc.">
+                </div>
+                <div class="cm-field col-12">
+                  <label for="apcSystems">Air Pollution Control Systems</label>
+                  <input id="apcSystems" type="text" placeholder="Cyclone, Bag filter, Wet scrubber, etc.">
+                </div>
+              </div>
+              <div class="cm-actions">
+                <button class="cm-btn ghost" type="button" id="back4">Back</button>
+                <button class="cm-btn ghost" type="button" id="next4">Next</button>
+              </div>
+            </section>
+
+            <!-- ================= Waste & Disposal ================= -->
+            <section id="tab-waste" class="cm-tab">
+              <div class="cm-formgrid">
+                <div class="cm-field col-6">
+                  <label for="hazardousWaste">Hazardous Waste (Type & Qty / Month)</label>
+                  <input id="hazardousWaste" type="text" placeholder="e.g., Waste oil — 100 L/month">
+                </div>
+                <div class="cm-field col-6">
+                  <label for="solidWaste">Solid Waste (Type & Qty / Month)</label>
+                  <input id="solidWaste" type="text" placeholder="e.g., Plastic scrap — 50 kg/month">
+                </div>
+                <div class="cm-field col-6">
+                  <label for="biomedicalWaste">Biomedical Waste (if any)</label>
+                  <input id="biomedicalWaste" type="text" placeholder="Optional">
+                </div>
+                <div class="cm-field col-6">
+                  <label for="disposalMethod">Disposal / TSDF / Recycler Details</label>
+                  <input id="disposalMethod" type="text" placeholder="Name of TSDF/Recycler, authorization, etc.">
+                </div>
+              </div>
+              <div class="cm-actions">
+                <button class="cm-btn ghost" type="button" id="back5">Back</button>
+                <button class="cm-btn ghost" type="button" id="next5">Next</button>
+              </div>
+            </section>
+
+            <!-- ================= Documents ================= -->
+            <section id="tab-docs" class="cm-tab">
+              <div class="cm-formgrid">
+                <div class="cm-field col-12">
+                  <label for="docs">Upload Required Documents</label>
+                  <input id="docs" type="file" multiple>
+                  <small class="cm-muted">Demo mode: stores file names & sizes only.</small>
+                </div>
+                <div class="col-12">
+                  <div class="cm-box">
+                    <h3 style="margin:0 0 8px;">Suggested Documents</h3>
+                    <ul style="margin:0; padding-left:18px;">
+                      <li>Site plan / layout</li>
+                      <li>Project report / process flow chart</li>
+                      <li>Water balance &amp; effluent treatment scheme</li>
+                      <li>Air emission &amp; APCS details</li>
+                      <li>Authorization letter / Undertaking</li>
+                      <li>Fee Challan / Payment proof</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <h4 style="margin:8px 0;">Attached</h4>
+                  <ul id="docList" class="cm-list"></ul>
+                </div>
+              </div>
+              <div class="cm-actions">
+                <button class="cm-btn ghost" type="button" id="back6">Back</button>
+                <button class="cm-btn ghost" type="button" id="next6">Next</button>
+              </div>
+            </section>
+
+            <!-- ================= Declaration & Submit ================= -->
+            <section id="tab-declare" class="cm-tab">
+              <div class="cm-formgrid">
+                <div class="cm-field col-12">
+                  <label for="remarks">Remarks (Optional)</label>
+                  <input id="remarks" type="text" placeholder="Any additional information">
+                </div>
+                <div class="cm-check col-12">
+                  <input type="checkbox" id="agree" />
+                  <label for="agree">I hereby declare that the information furnished is true and correct to the best of my knowledge. I agree to the Terms &amp; Conditions.</label>
+                </div>
+              </div>
+              <div class="cm-actions">
+                <button class="cm-btn ghost" type="button" id="back7">Back</button>
+                <button class="cm-btn primary" type="submit" id="btnSubmit">Submit Application</button>
+                <button class="cm-btn ghost" type="button" id="btnSaveDraftBottom">Save Draft</button>
+                <button class="cm-btn ghost" type="button" id="btnReset">Reset</button>
+              </div>
+            </section>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="copy">© 2025 State Pollution Control Board. All Rights Reserved.</div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="cm-toast hidden"></div>
+</body>
+</html>
